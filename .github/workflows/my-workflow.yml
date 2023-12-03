@@ -28,7 +28,7 @@ jobs:
       - name: Run checkstyle
         uses: nikitasavinov/checkstyle-action@master
         with:
-          checkstyle_config: "config/checkstyle/checkstyle.xml"
+          checkstyle_config: "/../../config/checkstyle/checkstyle.xml"
 
   coverage:
     needs: build
@@ -45,6 +45,6 @@ jobs:
       - name: Upload coverage report
         uses: madrapps/jacoco-report@v1.6.1
         with:
-          paths: "build/reports/jacoco/test/"
+          paths: "/../../build/reports/jacoco/test/"
           token: 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
           min-coverage-changed-files: 80
