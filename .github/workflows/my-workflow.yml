@@ -45,7 +45,5 @@ jobs:
       - name: Upload coverage report
         uses: madrapps/jacoco-report@v1.6.1
         with:
-          comment: true
-          comment_title: Code Coverage Report
-          comment_heading: Code Coverage
-          coverage_report_path: 'build/reports/jacoco/test/'
+          paths: 'build/reports/jacoco/test/'
+          token: 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
