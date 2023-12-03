@@ -28,7 +28,8 @@ jobs:
       - name: Run checkstyle
         uses: nikitasavinov/checkstyle-action@master
         with:
-          checkstyle_config:
+          checkstyle_config: config/checkstyle/checkstyle.xml
+          workdir: src
 
   coverage:
     needs: build
