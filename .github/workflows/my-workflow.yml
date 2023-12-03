@@ -1,0 +1,51 @@
+name: My Workflow
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Build project
+        run: gradle clean build
+
+  checkstyle:
+    needs: build
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Run checkstyle
+        uses: nikitasavinov/checkstyle-action@master
+        with:
+          checkstyle_path: 'config/checkstyle/checkstyle.xml'
+
+  coverage:
+    needs: build
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Generate coverage report
+        run: gradle jacocoTestReport
+
+      - name: Upload coverage report
+        uses: madrapps/jacoco-report@v1.6.1
+        with:
+          comment: true
+          comment_title: Code Coverage Report
+          comment_heading: Code Coverage
+          coverage_report_path: 'build/reports/jacoco/test/'
