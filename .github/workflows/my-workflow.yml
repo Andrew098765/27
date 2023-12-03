@@ -47,3 +47,4 @@ jobs:
         with:
           paths: 'build/reports/jacoco/test/'
           token: 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
+          min-coverage-changed-files: 80
