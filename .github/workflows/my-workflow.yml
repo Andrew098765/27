@@ -46,6 +46,6 @@ jobs:
         uses: madrapps/jacoco-report@v1.6.1
         with:
           paths: ${{ github.workspace }}/**/build/reports/jacoco/test/jacocoTestReport.xml
-          token: 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
+          token: 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
           title: test Coverage
           update-comment: true
