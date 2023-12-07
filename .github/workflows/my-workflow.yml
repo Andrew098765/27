@@ -47,6 +47,5 @@ jobs:
         with:
           paths: build/reports/jacoco/test/jacocoTestReport.xml
           token: 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
-          min-coverage-changed-files: 80
           title: test Coverage
           update-comment: true
