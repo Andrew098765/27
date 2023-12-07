@@ -48,6 +48,6 @@ jobs:
         uses: madrapps/jacoco-report@v1.6.1
         with:
           paths: build/reports/jacoco/test/jacocoTestReport.xml
-          token: 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
+          token: ${{ secrets.GITHUB_TOKEN }}
           title: homework
           update-comment: true
