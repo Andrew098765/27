@@ -45,7 +45,7 @@ jobs:
       - name: Upload coverage report
         uses: madrapps/jacoco-report@v1.6.1
         with:
-          paths: ${{ github.workflows }}/**/build/reports/jacoco/test/jacocoTestReport.xml
+          paths: ${{ github.workspace }}/**/build/reports/jacoco/test/jacocoTestReport.xml
           token: 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
           title: test Coverage
           update-comment: true
