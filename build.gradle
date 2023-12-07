@@ -44,7 +44,11 @@ jacocoTestCoverageVerification {
 }
 
 jacocoTestReport {
+    dependsOn tasks.build
     reports {
         xml.required = true
+        xml.enabled false
+        csv.enabled false
+        html.destination file("$buildDir/reports/jacoco")
     }
 }
