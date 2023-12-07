@@ -1,7 +1,6 @@
 name: My Workflow
 
 on:
-  push:
   pull_request:
   workflow_dispatch:
 
@@ -47,7 +46,7 @@ jobs:
         uses: madrapps/jacoco-report@v1.6.1
         with:
           paths: build/reports/jacoco/test/jacocoTestReport.xml
-          token: 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
+          token: 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
           min-coverage-changed-files: 80
           title: test Coverage
           update-comment: true
