@@ -47,7 +47,7 @@ jobs:
         id: jacoco
         uses: madrapps/jacoco-report@v1.6.1
         with:
-          paths: ${{ github.workspace }}/**/build/reports/jacoco/test/jacocoTestReport.xml
+          paths: build/reports/jacoco/test/jacocoTestReport.xml
           token: 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
           title: homework
           update-comment: true
