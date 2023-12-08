@@ -47,7 +47,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Download Jacoco coverage report
+      - name: Download coverage report
         uses: actions/download-artifact@v2
 
       - name: Load coverage report
