@@ -13,14 +13,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Build project
-        run: |
-          gradle clean build
-          gradle jacocoTestReport
-      - name: Upload coverage report
-        uses: actions/upload-artifact@v2
-        with:
-          name: coverage-report
-          path: build/jacoco
+        run: gradle clean build
 
   checkstyle:
     needs: build
@@ -47,14 +40,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Download coverage report
-        uses: actions/download-artifact@v2
+      - name: Generate coverage report
+        run: gradle jacocoTestReport
 
-      - name: Load coverage report
+      - name: Upload coverage report
         id: jacoco
         uses: madrapps/jacoco-report@v1.6.1
         with:
-          paths: build/jacoco
+          paths: ${{ github.workspace }}/**/build/reports/jacoco/test/jacocoTestReport.xml
           token: ${{ secrets.GITHUB_TOKEN }}
           title: homework
           update-comment: true
