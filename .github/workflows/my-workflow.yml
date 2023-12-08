@@ -15,12 +15,6 @@ jobs:
       - name: Build project
         run: gradle clean build
 
-      - name: Collect coverage
-        run: gradle test jacocoTestReport
-
-      - name: Copy coverage report
-        run: cp -r build/reports/jacoco/test ${{ github.workspace }}
-
   checkstyle:
     needs: build
 
@@ -46,17 +40,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Collect coverage from build
+      - name: Generate coverage report
         run: gradle jacocoTestReport
-
-      - name: Copy coverage report
-        run: cp -r build/jacoco ${{ github.workspace }}
 
       - name: Upload coverage report
         id: jacoco
         uses: madrapps/jacoco-report@v1.6.1
         with:
-          paths: ${{ github.workspace }}/jacoco/jacocoTestReport.xml
+          paths: ${{ github.workspace }}/**/build/reports/jacoco/test/jacocoTestReport.xml
           token: ${{ secrets.GITHUB_TOKEN }}
           title: homework
           update-comment: true
