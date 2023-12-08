@@ -54,7 +54,7 @@ jobs:
         id: jacoco
         uses: madrapps/jacoco-report@v1.6.1
         with:
-          report_directory: build/jacoco
+          paths: build/jacoco
           token: ${{ secrets.GITHUB_TOKEN }}
           title: homework
           update-comment: true
