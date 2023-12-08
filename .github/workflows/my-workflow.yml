@@ -1,0 +1,53 @@
+name: My Workflow
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Build project
+        run: gradle clean build
+
+  checkstyle:
+    needs: build
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Run checkstyle
+        uses: nikitasavinov/checkstyle-action@master
+        with:
+          checkstyle_config: config/checkstyle/checkstyle.xml
+          workdir: src
+
+  coverage:
+    needs: build
+    permissions:
+      pull-requests: write
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Generate coverage report
+        run: gradle jacocoTestReport
+
+      - name: Upload coverage report
+        id: jacoco
+        uses: madrapps/jacoco-report@v1.6.1
+        with:
+          paths: ${{ github.workspace }}/**/build/reports/jacoco/test/jacocoTestReport.xml
+          token: ${{ secrets.GITHUB_TOKEN }}
+          title: homework
+          update-comment: true
